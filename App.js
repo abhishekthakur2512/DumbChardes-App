@@ -6,6 +6,7 @@ import {
   Dimensions,
   Image,
   Button,
+  ImageBackground,
 } from "react-native";
 import { Block, theme, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
@@ -56,15 +57,19 @@ export default function App() {
   return (
     <Block flex style={styles.container}>
       <StatusBar hidden />
+      {/* <Block flex>
+        <ImageBackground
+          source={require("./assets/background_1.jpg")}
+          style={{ height, width, zIndex: 1 }}
+        />
+      </Block> */}
+
       <Block flex style={styles.headerBox}>
         {/* DISPLAY IMAGE */}
         <Block center>
           <Image
             style={styles.headingImage}
-            source={{
-              uri:
-                "https://fontmeme.com/permalink/201229/f0faa41a4261afd4635d528822ccb843.png",
-            }}
+            source={require("./assets/header_title.png")}
             resizeMode={"cover"}
           />
           <Image
@@ -105,7 +110,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Constants.COLOR.BLACK,
+    backgroundColor: theme.COLORS.BLACK,
   },
 
   button: {
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
     marginRight: "4%",
     marginTop: "2%",
     marginBottom: "2%",
-    borderWidth: 0.2,
+    borderWidth: 0.5,
     borderColor: "white",
     textAlign: "center",
     fontFamily: Constants.FONT_DEFAULT,
@@ -173,7 +178,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   headingImage: {
-    width: width * 0.8,
-    height: width * 0.14,
+    width: width * 0.6,
+    height: width * 0.1,
   },
 });

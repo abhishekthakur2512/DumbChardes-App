@@ -1,29 +1,14 @@
 export default {};
 
-export const EASY_MOVIE_LIST = [
-  "EASY_MOVIE_1",
-  "EASY_MOVIE_2",
-  "EASY_MOVIE_3",
-  "EASY_MOVIE_4",
-];
+export const EASY_MOVIE_LIST = ["KRRISH"];
 
-export const MEDIUM_MOVIE_LIST = [
-  "MEDIUM_MOVIE_1",
-  "MEDIUM_MOVIE_2",
-  "MEDIUM_MOVIE_3",
-  "MEDIUM_MOVIE_4",
-  "MEDIUM_MOVIE_5",
-];
+export const MEDIUM_MOVIE_LIST = ["PHIR HERA PHERI"];
 
-export const HARD_MOVIE_LIST = [
-  "HARD_MOVIE_1",
-  "HARD_MOVIE_2",
-  "HARD_MOVIE_3",
-  "HARD_MOVIE_4",
-  "HARD_MOVIE_5",
-];
+export const HARD_MOVIE_LIST = ["MISSION ISTANBUL"];
 
 export const RANDOM_MOVIE_LIST = HARD_MOVIE_LIST.concat(
   EASY_MOVIE_LIST,
   MEDIUM_MOVIE_LIST
 );
+
+const _1929 = ['All for Money','Paisa Na Gulam','Foolish Wisdom','Anarbala','Fairy of Anar','Apahrita','The Kidnapped Girl','A Throw Of Dice','Baghdad Nu Baharvatiyo','Thief of Baghdad','Bahadur Baharvatiyo','Terror of the Hills','Bangabala','Baji Prabhu Deshpande','Valley of the Immortals','Be Dhari Talwar','Bhedi Sawar','Bhool Bhulaiyan','Bicharak','The Judge','Bilwamangal','Bikharan','Blood For Blood','Raktacha Sood','Bolti Tapeli','Talking Pot','Broken Hearts','Zakhmi Jigar','Chandrahasa','Moon-Faced Beauty','Chirag-e-Kohistan','Lamp of the Hut','Choice Of A Bride','Kishori','Collegian','Dagakhor Dilbar','Kings Paramour','Daring Rathod','Veer Rathod','Dashrathi Ram','Dilruba','Belle of Bombay','Dharma Patni','The Ideal Hindu Wife','Fairy Of Sinhaldwip','Sinhaldweep Ki Sundari','Falak Numa','Female Feat','Rajwada Na Ranga','Friend Or Fiend','Sanmitra Ke Shaitan','Garuda Garvabhangam','Pride of Satyabhama','Gnana Sundari','Gori Bala','Gulshan-e-Arab','Arabian Garden','Hawai Sawar','Flying Prince','Heart Of King','Raj Hriday','Hoor-e-Punjab','His Old Debt','Mard Ki Zabaan','Mysterious Eagle','Jai Bharati','Young India','Jai Somnath','Jawani Diwani','Flaming Youth','Jayant','Jewel Of Rajputana','Mewad Nu Moti','Jugalanguria','Kacha Devayani','Kacha and Devayani','Kanak Tara','Karuna Kumari','Khwab-e-Hasti','Magic Flute','Khedda','Khooni Kon?','Not Guilty','Kodandhari Ram','Seeta Swayamwar','Kono Vank?','Whose Fault?','Kovalan','Fatal Anklet','Krishna Kausalya','Imitator','Kumud Kumari','Kusumlata','Lily of the Valley','Law of Love','Prem Pash','Lutaru Lalna','Dacoits Damsel','Madhu Bansari','Maha Sundar','Malati Madhav','Malavikagni Mitra','Mard Ki Zabaan','His Old Debt','Maurya Patan','Fall of the Mauryas','Mayavi Nagari','The Magic City','Midnight Girl','Nisha Sundari','Milan Dinar','Prem Ni Kasoti','Miss Dolly','Mumbaino Mawali','The Blackguard','Mumbaino Satodio','Speculator','Bombays Gentleman','Mysterious Prince','Prince Thaksen','Naseeb Ni Devi','Goddess of Luck','Naseeb Ni Nakhara','Shattered Hopes','Natun Janma','New Birth','Nishan Danka','Flag Of Honour','Pardesi Saiyan','The Lovers','Parijatak','The Flower of Heaven','Parivartan','Revolution in Life','Husband Wife','Pitru Prem','A Father’s Love','Prabhavati','Prem Yatra','Pilgrims of Love','Prithviraj Sanyogita','Punjab Kesari','Lion of Punjab','Punjab Mail','Punya Prabhav','Pyari','Radio Girl','Rajani','Raj Dharma','Prince of the People','Raj Hansa','The Royal Swan','Rajput Sawar','Rajput Cavalier','Rajputani','Woman From Rajputana','Raj Ramani','Vanishing Hopes','Raj Sanyas','Ramdas','Rana Garjana','What Price Loyalty?','Rank Nu Ratan','The Saviour','Reclamation','Patitodhar','Red Signal','Lal Vavto','Roaring Lion','Sinh Ka Bachha Sinh','Rukmini Haran','Sant Meerabai','Saint Mira','Satta No Mad','Wages of Virtue','Shahi Chor','Wonderful Prince','Shashikala','Tit For Tat','Shiraz','Das Grabmal Einer Groszen Liebe','Shiraz-Ud-Dowla','Shirin Khusru','Shri Balaji','Shri Kanyaka Parameshwari','Sinhaldweep Ki Sundari','Fairy of Sinhaldwip','Sneh Samadhi','Martyrs of Love','Sorathi Shamsher','Noblesse Oblige','Stage Girl','Subhadra Haran','Sukumari','Good Girl','Sword To Sword','Talwar Ka Dhani','Tal Bhairav','Talwar Ni Dhare','Tawangar Ni Talwar','Tarun Tapaswini','Young Ascetic','Ulfat-e-Mohammed','Loves of Prince Mohammed','Vasvadatta','Sona No Suraj','Vasant Padmini','Vasantsena','Veer Baji','Veer Haq','The Triumph','Veer Garjana','Reward Of Blind Passion','Veer Pujan','Hero Worship','Warrior','Rangilo Rajput','Wedding Night','Vasal Ki Raat','Zeheri Saap'];
