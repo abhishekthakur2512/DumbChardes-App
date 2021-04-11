@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, Animated, View } from "react-native";
+import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
 import Constants, { COLOR_THEME } from "./constants";
@@ -9,27 +9,15 @@ const COLORS = COLOR_THEME['THEME_RED'];
 
 export default function App() {
   const [movieName, setMovieName] = useState("CHOOSE DIFFICULTY");
-  const animate = () => {
-    console.log('animation');
-  };
-
-  const handleEasyButton = () => {
-    setMovieName(getRandomMovie());
-  }
-  const handleMediumButton = () => setMovieName(getRandomMovie());
-  const handleHardButton = () => setMovieName(getRandomMovie());
   const handleRandomButton = () => setMovieName(getRandomMovie());
 
   return (
     <Block flex style={styles.container}>
       <StatusBar hidden />
-      {/* <Block flex>
-        <ImageBackground
+      <ImageBackground
           source={require("./assets/background_1.jpg")}
-          style={{ height, width, zIndex: 1 }}
-        />
-      </Block> */}
-
+          style={{ height, width }}
+      >
       <Block flex style={styles.headerBox}>
         {/* DISPLAY IMAGE */}
         <Block center>
@@ -53,29 +41,13 @@ export default function App() {
         {/* BUTTONS LIST */}
         <Block>
           <Block style={styles.ButtonListLine1} center>
-
-            <TouchableHighlight onPress={handleEasyButton}  style = {styles.button}>
-              <Text style = {styles.buttonText}> E A S Y </Text>
+            <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
+              <Text style = {styles.buttonText}> G E N E R A T E </Text>
             </TouchableHighlight>
-
-            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
-              <Text style = {styles.buttonText}> M E D I U M</Text>
-            </TouchableHighlight>
-
-          </Block>
-
-          <Block style={styles.ButtonListLine2} center>
-            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
-              <Text style = {styles.buttonText}> H A R D </Text>
-            </TouchableHighlight>
-
-            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
-              <Text style = {styles.buttonText}> R A N D O M </Text>
-            </TouchableHighlight>
-
           </Block>
         </Block>
       </Block>
+      </ImageBackground>
     </Block>
   );
 }
@@ -93,9 +65,8 @@ const styles = StyleSheet.create({
     color: COLORS.TEXT,
     backgroundColor: COLORS.PRIMARY,
     fontSize: 15,
-    width: width/2.8,
-    paddingTop: "5%",
-    paddingBottom: "5%",
+    padding: '5%',
+    width: width/1.5,
     margin: '3%',
     borderRadius: 5,
     alignItems: 'center',
