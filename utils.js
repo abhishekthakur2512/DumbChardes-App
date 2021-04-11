@@ -3,6 +3,7 @@ import {
   MEDIUM_MOVIE_LIST,
   HARD_MOVIE_LIST,
   RANDOM_MOVIE_LIST,
+  MASTER_MOVIE_LIST,
 } from "./movie_list";
 
 const getRandomInt = (max) => {
@@ -28,7 +29,7 @@ export function getHardMovie() {
 }
 
 export function getRandomMovie() {
-  const size = RANDOM_MOVIE_LIST.length;
+  const size = MASTER_MOVIE_LIST.length;
   const randomIndex = getRandomInt(size);
-  return RANDOM_MOVIE_LIST[randomIndex];
+  return MASTER_MOVIE_LIST[randomIndex];
 }

@@ -8,14 +8,16 @@ import { getEasyMovie, getMediumMovie, getHardMovie, getRandomMovie } from "./ut
 const COLORS = COLOR_THEME['THEME_RED'];
 
 export default function App() {
-  const [movieName, setMovieName] = useState("CHOOSE DIFFICULTY");
-  const handleRandomButton = () => setMovieName(getRandomMovie());
+  const [movieName, setMovieName] = useState("CLICK BELOW");
+  const [movieObject, setMovieObject] = useState("CLICK BELOW");
+  // const handleRandomButton = () => setMovieName(getRandomMovie());
+  const handleRandomButton = () => setMovieObject(getRandomMovie());
 
   return (
     <Block flex style={styles.container}>
       <StatusBar hidden />
       <ImageBackground
-          source={require("./assets/background_1.jpg")}
+          source={require("./assets/background_4.jpg")}
           style={{ height, width }}
       >
       <Block flex style={styles.headerBox}>
@@ -34,8 +36,9 @@ export default function App() {
         </Block>
 
         {/* DISPLAY FILL BOX */}
-        <Block style={styles.displayFillBox}>
-          <Text style={styles.displayFillText}>{movieName}</Text>
+        <Block style={styles.displayFillBox1}>
+          <Text style={styles.displayFillText}>{movieObject.title + '\n'}</Text>
+          <Text style={styles.displayFillText}>{movieObject.year}</Text>
         </Block>
 
         {/* BUTTONS LIST */}
@@ -98,29 +101,18 @@ const styles = StyleSheet.create({
   ButtonListLine2: {
     flexDirection: "row",
   },
-  displayFillBox: {
-    height: "20%",
-    width: "80%",
-    paddingLeft: "2%",
-    paddingRight: "2%",
-    paddingTop: "5%",
-    paddingBottom: "5%",
+  
+  displayFillBox1: {
     marginLeft: "10%",
     marginRight: "10%",
-    marginTop: "2%",
-    marginBottom: "2%",
-    // borderWidth: 1,
-    borderColor: COLORS.PRIMARY,
-    backgroundColor: COLORS.PRIMARY,
-    borderRadius: 10,
     color: COLORS.PRIMARY,
-    // textAlign: "center",
     alignItems: "center",
   },
   displayFillText: {
     color: COLORS.TEXT,
     fontFamily: Constants.FONT_DEFAULT,
     fontSize: 25,
+    opacity: 1
   },
   headingImage: {
     width: width * 0.6,
@@ -131,22 +123,3 @@ const styles = StyleSheet.create({
 
 
 
-// button: {
-//   color: COLORS.TEXT,
-//   backgroundColor: COLORS.PRIMARY,
-//   fontSize: 15,
-//   width: "35%",
-//   paddingLeft: "2%",
-//   paddingRight: "2%",
-//   paddingTop: "5%",
-//   paddingBottom: "5%",
-//   marginLeft: "4%",
-//   marginRight: "4%",
-//   marginTop: "2%",
-//   marginBottom: "2%",
-//   // borderWidth: 0.5,
-//   // borderColor: "white",
-//   borderRadius: 5,
-//   textAlign: "center",
-//   fontFamily: Constants.FONT_DEFAULT,
-// },
