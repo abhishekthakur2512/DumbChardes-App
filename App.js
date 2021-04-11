@@ -2,14 +2,51 @@ import React, { useState } from "react";
 import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
-import Constants, { COLOR_THEME } from "./constants";
+import Constants, { COLORS, COLOR_THEME, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
 import { getEasyMovie, getMediumMovie, getHardMovie, getRandomMovie } from "./utils";
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { getImageUrl } from './utils';
-const COLORS = COLOR_THEME['THEME_RED'];
 
 export default function App() {
-  const [movieObject, setMovieObject] = useState({title: 'CLICK BELOW'});
+  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W'});
   const handleRandomButton = () => setMovieObject(getRandomMovie());
+  const handleStartButton = () => {
+    setIsStopWatchShow(true);
+    setStopwatchStart(!stopwatchStart);
+    setStopwatchReset(false);
+  };
+  const handleResetButton = () => {
+    setIsStopWatchShow(true);
+    setStopwatchStart(false);
+    setStopwatchReset(true);
+  }
+  
+  const [stopwatchStart, setStopwatchStart] = useState(false);
+  const [stopwatchReset, setStopwatchReset] = useState(false);
+  const [isStopwatchShow, setIsStopWatchShow] = useState(false);
+
+  const getLogo = () => {
+    return ( 
+      <Block center>
+        <Image
+          style={styles.logo}
+          source={require("./assets/image_2.png")}
+          resizeMode={"cover"}
+        />
+      </Block>
+    )
+  }
+
+  const getStopwatch = () => {
+    return (
+      <Block style = {{alignItems: 'center'}}>
+          <Stopwatch laps msecs 
+            start = { stopwatchStart }
+            reset = { stopwatchReset }
+            options = { stopwatchOptionsCss }/>
+        </Block>
+    )
+  }
 
   return (
     <Block flex style={styles.container}>
@@ -19,26 +56,27 @@ export default function App() {
           style={{ height, width }}
       >
       <Block flex style={styles.headerBox}>
-        {/* DISPLAY IMAGE */}
-        {/* <Text style = {styles.headerText}>ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S</Text> */}
-        {/* <Text style = {styles.headerText}>🄳 🅄 🄼 🄱</Text>
-        <Text style = {styles.headerText}>🄲 🄷 🄰 🅁 🄰 🄳 🄴 🅂</Text> */}
-        <Text style = {styles.headerText}>🄳🅄🄼🄱 🄲🄷🄰🅁🄰🄳🄴🅂</Text>
-        {/* <Text style = {styles.headerText}>🄲 🄷 🄰 🅁 🄰 🄳 🄴 🅂</Text> */}
-        {/* <Text style = {styles.headerText}>🅳🆄🅼🅱 🅲🅷🅰🆁🅰🅳🅴🆂</Text> */}
-        {/* <Text style = {styles.headerText}></Text> */}
-        <Block center>
-          {/* <Image
-            style={styles.headingImage}
-            source={require("./assets/header_title.png")}
-            resizeMode={"cover"}
-          /> */}
+        {/* HEADER TEXT */}
+        <Text style = {styles.headerText}>{HEADER_TEXT}</Text>
+
+        {/* STOP WATCH AND LOGO BLOCK */}
+
+        { isStopwatchShow ? getStopwatch() : getLogo()}
+
+        {/* <Block center>
           <Image
             style={styles.logo}
             source={require("./assets/image_2.png")}
             resizeMode={"cover"}
           />
         </Block>
+
+        <Block style = {{alignItems: 'center'}}>
+          <Stopwatch laps msecs 
+            start = { stopwatchStart }
+            reset = { stopwatchReset }
+            options = { stopwatchOptionsCss }/>
+        </Block> */}
 
         {/* DISPLAY FILL BOX */}
         <Block style={styles.displayFillBox1}>
@@ -55,8 +93,13 @@ export default function App() {
           <Block style = {styles.stopWatchBox}>
             <Text style = {styles.stopwatchText}> S T O P W A T C H </Text>
             <Block style = {{flexDirection: "row", alignSelf: 'center'}}>
-              <Text style = {styles.clockButton}> S T A R T </Text>
-              <Text style = {styles.clockButton}> R E S E T </Text>
+              <TouchableHighlight onPress={handleStartButton}  style = {styles.clockButton}>
+                <Text> S T A R T </Text>
+              </TouchableHighlight>
+              
+              <TouchableHighlight onPress={handleResetButton}  style = {styles.clockButton}>
+                <Text> R E S E T </Text>
+              </TouchableHighlight>
             </Block>
           </Block>
           {/* <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
@@ -88,13 +131,15 @@ const styles = StyleSheet.create({
   stopwatchText: {
     color: COLORS.WHITE,
     alignSelf: 'center',
+    fontSize: 12
   },
   clockButton: {
     borderRadius: 5,
     backgroundColor: COLORS.PRIMARY,
     color: COLORS.WHITE,
     margin: '2%',
-    padding: '3%'
+    padding: '4%',
+    fontSize: 10
   },
   button: {
     color: COLORS.TEXT,

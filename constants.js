@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+const { height, width } = Dimensions.get("screen");
+
+
 const Constants = {
   COLOR: {
     PRIMARY: "#000000",
@@ -21,5 +25,31 @@ export const COLOR_THEME = {
     WHITE: '#FFFFFF'
   }
 }
+
+export const COLORS = COLOR_THEME['THEME_RED'];
+
+export const stopwatchOptionsCss = {
+    container: {
+      paddingLeft: 30,
+      paddingRight: 30,
+      paddingTop: 10,
+      paddingBottom: 10,
+      marginTop: '5%',
+      marginBottom: '5%',
+      borderRadius: 7,
+      alignItems: 'center',
+      color: COLORS.PRIMARY,
+      backgroundColor: COLORS.PRIMARY,
+    },
+    text: {
+      fontSize: 25,
+      color: '#FFF',
+      marginLeft: 7,
+    },
+}
+
+export const HEADER_TEXT = '🄳🅄🄼🄱 🄲🄷🄰🅁🄰🄳🄴🅂';
+// export const HEADER_TEXT = '🅳🆄🅼🅱 🅲🅷🅰🆁🅰🅳🅴🆂';
+// export const HEADER_TEXT = 'ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S';
 
 export default Constants;
