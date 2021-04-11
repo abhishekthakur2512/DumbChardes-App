@@ -65,7 +65,6 @@ export default function App() {
           </Block>
 
           <Block style={styles.ButtonListLine2} center>
-
             <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
               <Text style = {styles.buttonText}> H A R D </Text>
             </TouchableHighlight>
@@ -73,7 +72,7 @@ export default function App() {
             <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
               <Text style = {styles.buttonText}> R A N D O M </Text>
             </TouchableHighlight>
-            
+
           </Block>
         </Block>
       </Block>
