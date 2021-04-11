@@ -4,13 +4,11 @@ import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
 import Constants, { COLOR_THEME } from "./constants";
 import { getEasyMovie, getMediumMovie, getHardMovie, getRandomMovie } from "./utils";
-
+import { getImageUrl } from './utils';
 const COLORS = COLOR_THEME['THEME_RED'];
 
 export default function App() {
-  const [movieName, setMovieName] = useState("CLICK BELOW");
-  const [movieObject, setMovieObject] = useState("CLICK BELOW");
-  // const handleRandomButton = () => setMovieName(getRandomMovie());
+  const [movieObject, setMovieObject] = useState({title: 'CLICK BELOW'});
   const handleRandomButton = () => setMovieObject(getRandomMovie());
 
   return (
@@ -22,12 +20,13 @@ export default function App() {
       >
       <Block flex style={styles.headerBox}>
         {/* DISPLAY IMAGE */}
+        <Text style = {styles.headerText}>ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S</Text>
         <Block center>
-          <Image
+          {/* <Image
             style={styles.headingImage}
             source={require("./assets/header_title.png")}
             resizeMode={"cover"}
-          />
+          /> */}
           <Image
             style={styles.logo}
             source={require("./assets/image_2.png")}
@@ -37,9 +36,10 @@ export default function App() {
 
         {/* DISPLAY FILL BOX */}
         <Block style={styles.displayFillBox1}>
-          <Text style={styles.displayFillText}>{movieObject.title + '\n'}</Text>
+          <Text style={styles.displayFillText}>{movieObject.title}</Text>
           <Text style={styles.displayFillText}>{movieObject.year}</Text>
         </Block>
+        <Image source={getImageUrl(movieObject.posterurl)} style = {styles.poster} />
 
         {/* BUTTONS LIST */}
         <Block>
@@ -59,8 +59,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.BACKGROUND,
   },
-
-
   buttonText: {
     color: 'white'
   },
@@ -77,14 +75,17 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     zIndex: 2,
-    marginTop: "20%",
+    marginTop: "15%",
+  },
+  headerText: {
+    alignSelf: 'center',
+    color: COLORS.WHITE,
+    fontSize: 25
   },
   logo: {
     width: width * 0.3,
     height: width * 0.3,
-    zIndex: 2,
     position: "relative",
-    margin: "7%",
   },
   title: {
     marginTop: "-5%",
@@ -112,12 +113,18 @@ const styles = StyleSheet.create({
     color: COLORS.TEXT,
     fontFamily: Constants.FONT_DEFAULT,
     fontSize: 25,
-    opacity: 1
+    marginBottom: '3%'
   },
   headingImage: {
     width: width * 0.6,
     height: width * 0.1,
   },
+  poster: {
+    height: '30%',
+    width: '40%',
+    resizeMode: "contain",
+    alignSelf: 'center'
+  }
 });
 
 

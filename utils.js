@@ -33,3 +33,8 @@ export function getRandomMovie() {
   const randomIndex = getRandomInt(size);
   return MASTER_MOVIE_LIST[randomIndex];
 }
+
+export const getImageUrl = (uri) => {
+  if(!uri) return '';
+  return { uri }
+}
