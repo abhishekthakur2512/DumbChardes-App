@@ -20,7 +20,13 @@ export default function App() {
       >
       <Block flex style={styles.headerBox}>
         {/* DISPLAY IMAGE */}
-        <Text style = {styles.headerText}>ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S</Text>
+        {/* <Text style = {styles.headerText}>ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S</Text> */}
+        {/* <Text style = {styles.headerText}>🄳 🅄 🄼 🄱</Text>
+        <Text style = {styles.headerText}>🄲 🄷 🄰 🅁 🄰 🄳 🄴 🅂</Text> */}
+        <Text style = {styles.headerText}>🄳🅄🄼🄱 🄲🄷🄰🅁🄰🄳🄴🅂</Text>
+        {/* <Text style = {styles.headerText}>🄲 🄷 🄰 🅁 🄰 🄳 🄴 🅂</Text> */}
+        {/* <Text style = {styles.headerText}>🅳🆄🅼🅱 🅲🅷🅰🆁🅰🅳🅴🆂</Text> */}
+        {/* <Text style = {styles.headerText}></Text> */}
         <Block center>
           {/* <Image
             style={styles.headingImage}
@@ -43,11 +49,19 @@ export default function App() {
 
         {/* BUTTONS LIST */}
         <Block>
-          <Block style={styles.ButtonListLine1} center>
-            <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
-              <Text style = {styles.buttonText}> G E N E R A T E </Text>
-            </TouchableHighlight>
+          <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
+            <Text style = {styles.buttonText}> G E N E R A T E </Text>
+          </TouchableHighlight>
+          <Block style = {styles.stopWatchBox}>
+            <Text style = {styles.stopwatchText}> S T O P W A T C H </Text>
+            <Block style = {{flexDirection: "row", alignSelf: 'center'}}>
+              <Text style = {styles.clockButton}> S T A R T </Text>
+              <Text style = {styles.clockButton}> R E S E T </Text>
+            </Block>
           </Block>
+          {/* <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
+            <Text style = {styles.buttonText}> S T O P W A T C H </Text>
+          </TouchableHighlight> */}
         </Block>
       </Block>
       </ImageBackground>
@@ -60,7 +74,27 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND,
   },
   buttonText: {
-    color: 'white'
+    color: COLORS.WHITE
+  },
+  stopWatchBox: {
+    marginTop: '2%',
+    borderColor: COLORS.WHITE,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginLeft: '15%',
+    marginRight: '15%',
+    padding: '3%'
+  },
+  stopwatchText: {
+    color: COLORS.WHITE,
+    alignSelf: 'center',
+  },
+  clockButton: {
+    borderRadius: 5,
+    backgroundColor: COLORS.PRIMARY,
+    color: COLORS.WHITE,
+    margin: '2%',
+    padding: '3%'
   },
   button: {
     color: COLORS.TEXT,
@@ -72,10 +106,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     fontFamily: Constants.FONT_DEFAULT,
+    alignSelf: 'center'
   },
   headerBox: {
     zIndex: 2,
-    marginTop: "15%",
+    marginTop: "12%",
   },
   headerText: {
     alignSelf: 'center',
@@ -123,7 +158,8 @@ const styles = StyleSheet.create({
     height: '30%',
     width: '40%',
     resizeMode: "contain",
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: '5%'
   }
 });
 
