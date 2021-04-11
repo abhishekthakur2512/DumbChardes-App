@@ -1,58 +1,24 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Alert,
-  StatusBar,
-  Dimensions,
-  Image,
-  Button,
-  ImageBackground,
-} from "react-native";
-import { Block, theme, Text } from "galio-framework";
+import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, Animated, View } from "react-native";
+import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
-import Theme from "./Theme";
-import Utils from "./utils";
-import Constants from "./constants";
-import {
-  getEasyMovie,
-  getMediumMovie,
-  getHardMovie,
-  getRandomMovie,
-} from "./utils";
+import Constants, { COLOR_THEME } from "./constants";
+import { getEasyMovie, getMediumMovie, getHardMovie, getRandomMovie } from "./utils";
+
+const COLORS = COLOR_THEME['THEME_RED'];
 
 export default function App() {
-  console.log("App Started");
-
-  const [difficulty, setDifficulty] = useState("none");
-  const movieFill = () => {
-    switch (difficulty) {
-      case "none":
-        return "Click any button below";
-      case "easy":
-        return getEasyMovie();
-      case "medium":
-        return getMediumMovie();
-      case "hard":
-        return getHardMovie();
-      case "random":
-        return getRandomMovie();
-      default:
-        return "Something went wrong.";
-    }
+  const [movieName, setMovieName] = useState("CHOOSE DIFFICULTY");
+  const animate = () => {
+    console.log('animation');
   };
 
   const handleEasyButton = () => {
-    setDifficulty("easy");
-  };
-  const handleMediumButton = () => {
-    setDifficulty("medium");
-  };
-  const handleHardButton = () => {
-    setDifficulty("hard");
-  };
-  const handleRandomButton = () => {
-    setDifficulty("random");
-  };
+    setMovieName(getRandomMovie());
+  }
+  const handleMediumButton = () => setMovieName(getRandomMovie());
+  const handleHardButton = () => setMovieName(getRandomMovie());
+  const handleRandomButton = () => setMovieName(getRandomMovie());
 
   return (
     <Block flex style={styles.container}>
@@ -81,26 +47,33 @@ export default function App() {
 
         {/* DISPLAY FILL BOX */}
         <Block style={styles.displayFillBox}>
-          <Text style={styles.displayFillText}>{movieFill()}</Text>
+          <Text style={styles.displayFillText}>{movieName}</Text>
         </Block>
 
         {/* BUTTONS LIST */}
         <Block>
           <Block style={styles.ButtonListLine1} center>
-            <Text style={styles.button} onPress={handleEasyButton}>
-              EASY
-            </Text>
-            <Text style={styles.button} onPress={handleMediumButton}>
-              MEDIUM
-            </Text>
+
+            <TouchableHighlight onPress={handleEasyButton}  style = {styles.button}>
+              <Text style = {styles.buttonText}> E A S Y </Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
+              <Text style = {styles.buttonText}> M E D I U M</Text>
+            </TouchableHighlight>
+
           </Block>
+
           <Block style={styles.ButtonListLine2} center>
-            <Text style={styles.button} onPress={handleHardButton}>
-              HARD
-            </Text>
-            <Text style={styles.button} onPress={handleRandomButton}>
-              RANDOM
-            </Text>
+
+            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
+              <Text style = {styles.buttonText}> H A R D </Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight onPress={handleEasyButton} style = {styles.button}>
+              <Text style = {styles.buttonText}> R A N D O M </Text>
+            </TouchableHighlight>
+            
           </Block>
         </Block>
       </Block>
@@ -110,24 +83,23 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.COLORS.BLACK,
+    backgroundColor: COLORS.BACKGROUND,
   },
 
+
+  buttonText: {
+    color: 'white'
+  },
   button: {
-    color: theme.COLORS.WHITE,
+    color: COLORS.TEXT,
+    backgroundColor: COLORS.PRIMARY,
     fontSize: 15,
-    width: "35%",
-    paddingLeft: "2%",
-    paddingRight: "2%",
+    width: width/2.8,
     paddingTop: "5%",
     paddingBottom: "5%",
-    marginLeft: "4%",
-    marginRight: "4%",
-    marginTop: "2%",
-    marginBottom: "2%",
-    borderWidth: 0.5,
-    borderColor: "white",
-    textAlign: "center",
+    margin: '3%',
+    borderRadius: 5,
+    alignItems: 'center',
     fontFamily: Constants.FONT_DEFAULT,
   },
   headerBox: {
@@ -145,7 +117,7 @@ const styles = StyleSheet.create({
     marginTop: "-5%",
   },
   titleText: {
-    color: theme.COLORS.WHITE,
+    color: COLORS.TEXT,
     fontSize: 30,
     fontFamily: Constants.FONT_DEFAULT,
   },
@@ -167,13 +139,16 @@ const styles = StyleSheet.create({
     marginRight: "10%",
     marginTop: "2%",
     marginBottom: "2%",
-    borderWidth: 2,
-    borderColor: theme.COLORS.WHITE,
-    textAlign: "center",
+    // borderWidth: 1,
+    borderColor: COLORS.PRIMARY,
+    backgroundColor: COLORS.PRIMARY,
+    borderRadius: 10,
+    color: COLORS.PRIMARY,
+    // textAlign: "center",
     alignItems: "center",
   },
   displayFillText: {
-    color: theme.COLORS.WHITE,
+    color: COLORS.TEXT,
     fontFamily: Constants.FONT_DEFAULT,
     fontSize: 25,
   },
@@ -182,3 +157,26 @@ const styles = StyleSheet.create({
     height: width * 0.1,
   },
 });
+
+
+
+
+// button: {
+//   color: COLORS.TEXT,
+//   backgroundColor: COLORS.PRIMARY,
+//   fontSize: 15,
+//   width: "35%",
+//   paddingLeft: "2%",
+//   paddingRight: "2%",
+//   paddingTop: "5%",
+//   paddingBottom: "5%",
+//   marginLeft: "4%",
+//   marginRight: "4%",
+//   marginTop: "2%",
+//   marginBottom: "2%",
+//   // borderWidth: 0.5,
+//   // borderColor: "white",
+//   borderRadius: 5,
+//   textAlign: "center",
+//   fontFamily: Constants.FONT_DEFAULT,
+// },
