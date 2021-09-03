@@ -4,7 +4,7 @@ import {
   HARD_MOVIE_LIST,
   RANDOM_MOVIE_LIST,
   MASTER_MOVIE_LIST,
-} from "./movie_list";
+} from "./movie_list/movie_list";
 
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
