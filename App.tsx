@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { StyleSheet, Switch, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
-import Constants, { COLORS, COLOR_THEME, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
-import { getRandomMovie } from "./utils";
+import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
+// import { getRandomMovie } from "./utils";
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
-import { getImageUrl } from './utils';
+import { getEasyMovie, getHardMovie, getImageUrl } from "./movie_list";
+// import { getImageUrl } from './utils';
 
 export default function App() {
-  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W'});
-  const handleRandomButton = () => setMovieObject(getRandomMovie());
+  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W', year: '', posterurl: ''});
+  const handleRandomButton = () => {
+    const movie = difficulty === DIFFICULTY.EASY ? getEasyMovie() : getHardMovie()
+    setMovieObject(movie);
+  }
   const handleStartButton = () => {
     setIsStopWatchShow(true);
     setStopwatchStart(!stopwatchStart);
@@ -20,10 +24,20 @@ export default function App() {
     setStopwatchStart(false);
     setStopwatchReset(true);
   }
+  const onChangeDifficulty = () => {
+    difficulty === DIFFICULTY.EASY ? 
+    setDifficulty(DIFFICULTY.HARD) :
+    setDifficulty(DIFFICULTY.EASY)
+  }
+  const onHiddenToggle = () => {
+    setIsHidden(!isHidden);
+  }
   
   const [stopwatchStart, setStopwatchStart] = useState(false);
   const [stopwatchReset, setStopwatchReset] = useState(false);
   const [isStopwatchShow, setIsStopWatchShow] = useState(false);
+  const [difficulty, setDifficulty] = useState(DIFFICULTY.EASY);
+  const [isHidden, setIsHidden] = useState(false);
 
   const getLogo = () => {
     return ( 
@@ -40,11 +54,11 @@ export default function App() {
   const getStopwatch = () => {
     return (
       <Block style = {{alignItems: 'center'}}>
-          <Stopwatch laps msecs 
-            start = { stopwatchStart }
-            reset = { stopwatchReset }
-            options = { stopwatchOptionsCss }/>
-        </Block>
+        <Stopwatch laps msecs 
+          start = { stopwatchStart }
+          reset = { stopwatchReset }
+          options = { stopwatchOptionsCss }/>
+      </Block>
     )
   }
 
@@ -79,22 +93,40 @@ export default function App() {
         </Block> */}
 
         <View style={styles.toggle}>
-          <Text style={styles.difficultyText}> DIFFICULTY </Text>
-          <Switch trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"/>
-          <Text style={styles.difficultyText}>HIDE </Text>
-          <Switch trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"/>
+          {
+            difficulty === DIFFICULTY.EASY ?
+            <Text style={styles.difficultyText}> EASY </Text>:
+            <Text style={styles.difficultyText}> HARD </Text> 
+          }
+          <Switch 
+            trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"
+            onChange={onChangeDifficulty} value = {difficulty === DIFFICULTY.HARD ? true : false }
+          />
+          <Text style={styles.difficultyText}>  HIDE </Text>
+          <Switch 
+            trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"
+            onChange={onHiddenToggle} value = {isHidden ? true : false }
+          />
         </View>
 
         {/* DISPLAY FILL BOX */}
-        <Block style={styles.displayFillBox1}>
-          <Text style={styles.displayFillText}>{movieObject.title}</Text>
-          <Text style={styles.displayFillText}>{movieObject.year}</Text>
-        </Block>
-        <Image source={getImageUrl(movieObject.posterurl)} style = {styles.poster} />
+        { !isHidden ? (
+              <Block style={styles.displayFillBox1}>
+                <Text style={styles.displayFillText}>{movieObject.title}</Text>
+                <Text style={styles.displayFillText}>{movieObject.year}</Text>
+              </Block>
+          ):(<Text></Text>) }
+        { !isHidden ? (
+            <Image source={getImageUrl(movieObject.posterurl)} style = {styles.poster} />
+          ):(<Text></Text>) }
+        
+
 
         {/* BUTTONS LIST */}
         <Block>
-          <TouchableHighlight onPress={handleRandomButton}  style = {styles.button}>
+          <TouchableHighlight 
+          onPress={handleRandomButton}  
+          style = {styles.button}>
             <Text style = {styles.buttonText}> G E N E R A T E </Text>
           </TouchableHighlight>
           <Block style = {styles.stopWatchBox}>
@@ -118,6 +150,10 @@ export default function App() {
     </Block>
   );
 }
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {

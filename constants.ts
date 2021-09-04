@@ -52,4 +52,8 @@ export const HEADER_TEXT = '🄳🅄🄼🄱 🄲🄷🄰🅁🄰🄳🄴🅂';
 // export const HEADER_TEXT = '🅳🆄🅼🅱 🅲🅷🅰🆁🅰🅳🅴🆂';
 // export const HEADER_TEXT = 'ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S';
 
+export enum DIFFICULTY {
+  EASY,
+  HARD
+}
 export default Constants;
