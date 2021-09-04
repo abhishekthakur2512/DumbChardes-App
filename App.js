@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
+import { StyleSheet, Switch, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
 import Constants, { COLORS, COLOR_THEME, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
@@ -77,6 +77,13 @@ export default function App() {
             reset = { stopwatchReset }
             options = { stopwatchOptionsCss }/>
         </Block> */}
+
+        <View style={styles.toggle}>
+          <Text style={styles.difficultyText}> DIFFICULTY </Text>
+          <Switch trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"/>
+          <Text style={styles.difficultyText}>HIDE </Text>
+          <Switch trackColor={{ false: "#767577", true: "#81b0ff" }} thumbColor={true ? COLORS.PRIMARY : COLORS.WHITE } ios_backgroundColor="#3e3e3e"/>
+        </View>
 
         {/* DISPLAY FILL BOX */}
         <Block style={styles.displayFillBox1}>
@@ -207,6 +214,20 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     alignSelf: 'center',
     marginBottom: '5%'
+  },
+  toggle: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: 'center',
+    marginBottom: 5
+  },
+  difficultyText: {
+    color: COLORS.WHITE,
+    alignSelf: 'center',
+    fontSize: 12
+  },
+  hideText: {
+    
   }
 });
 
