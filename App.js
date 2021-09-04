@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar, Dimensions, Image, TouchableHighlight, ImageBack
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
 import Constants, { COLORS, COLOR_THEME, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
-import { getEasyMovie, getMediumMovie, getHardMovie, getRandomMovie } from "./utils";
+import { getRandomMovie } from "./utils";
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { getImageUrl } from './utils';
 
@@ -94,11 +94,11 @@ export default function App() {
             <Text style = {styles.stopwatchText}> S T O P W A T C H </Text>
             <Block style = {{flexDirection: "row", alignSelf: 'center'}}>
               <TouchableHighlight onPress={handleStartButton}  style = {styles.clockButton}>
-                <Text> S T A R T </Text>
+                <Text style = {styles.clockButtonText}> S T A R T </Text>
               </TouchableHighlight>
               
               <TouchableHighlight onPress={handleResetButton}  style = {styles.clockButton}>
-                <Text> R E S E T </Text>
+                <Text style = {styles.clockButtonText}> R E S E T </Text>
               </TouchableHighlight>
             </Block>
           </Block>
@@ -136,10 +136,12 @@ const styles = StyleSheet.create({
   clockButton: {
     borderRadius: 5,
     backgroundColor: COLORS.PRIMARY,
-    color: COLORS.WHITE,
     margin: '2%',
-    padding: '4%',
-    fontSize: 10
+    padding: '4%'
+  },
+  clockButtonText: {
+    color: COLORS.WHITE,
+    fontSize: 10,
   },
   button: {
     color: COLORS.TEXT,
@@ -207,7 +209,5 @@ const styles = StyleSheet.create({
     marginBottom: '5%'
   }
 });
-
-
 
 
