@@ -9,7 +9,7 @@ import { getEasyMovie, getHardMovie, getImageUrl } from "./movie_list";
 // import { getImageUrl } from './utils';
 
 export default function App() {
-  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W', year: '', posterurl: ''});
+  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W', year: ' ', posterurl: ' '});
   const handleRandomButton = () => {
     const movie = difficulty === DIFFICULTY.EASY ? getEasyMovie() : getHardMovie()
     setMovieObject(movie);
@@ -133,7 +133,11 @@ export default function App() {
             <Text style = {styles.stopwatchText}> S T O P W A T C H </Text>
             <Block style = {{flexDirection: "row", alignSelf: 'center'}}>
               <TouchableHighlight onPress={handleStartButton}  style = {styles.clockButton}>
-                <Text style = {styles.clockButtonText}> S T A R T </Text>
+                {
+                  stopwatchStart ? 
+                  <Text style = {styles.clockButtonText}> S T O P </Text> :
+                  <Text style = {styles.clockButtonText}> S T A R T </Text>
+                }
               </TouchableHighlight>
               
               <TouchableHighlight onPress={handleResetButton}  style = {styles.clockButton}>

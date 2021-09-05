@@ -13,13 +13,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.abhishekthakur2512.FirstApp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/image_1.png",
         "backgroundColor": "#FFFFFF"
       },
       "versionCode": 4,
@@ -27,7 +30,7 @@
       "package": "dumb_charades.v1"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/image_1.png"
     }
   }
 }
