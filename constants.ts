@@ -12,7 +12,7 @@ const Constants = {
 };
 
 export const COLOR_THEME = {
-  'THEME_RED': {
+  'BROWN_RED': {
     PRIMARY: '#e34660',
     PRIMARY_LIGHT: '',
     PRIMARY_DARK: '',
@@ -26,34 +26,8 @@ export const COLOR_THEME = {
   }
 }
 
-export const COLORS = COLOR_THEME['THEME_RED'];
+export const COLORS = COLOR_THEME['BROWN_RED'];
 
-export const stopwatchOptionsCss = {
-    container: {
-      paddingLeft: 30,
-      paddingRight: 30,
-      paddingTop: 10,
-      paddingBottom: 10,
-      marginTop: '7%',
-      marginBottom: '7%',
-      borderRadius: 7,
-      alignItems: 'center',
-      color: COLORS.PRIMARY,
-      backgroundColor: COLORS.PRIMARY,
-    },
-    text: {
-      fontSize: 25,
-      color: '#FFF',
-      marginLeft: 7,
-    },
-}
+export const HEADER_TEXT = 'DRINKING GAME';
 
-export const HEADER_TEXT = '🄳🅄🄼🄱 🄲🄷🄰🅁🄰🄳🄴🅂';
-// export const HEADER_TEXT = '🅳🆄🅼🅱 🅲🅷🅰🆁🅰🅳🅴🆂';
-// export const HEADER_TEXT = 'ᕲ ᑘ ᘻ ᗷ   ᑢ ᕼ ᗩ ᖇ ᗩ ᕲ ᘿ S';
-
-export enum DIFFICULTY {
-  EASY,
-  HARD
-}
 export default Constants;
