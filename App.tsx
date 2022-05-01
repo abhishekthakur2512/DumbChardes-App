@@ -6,14 +6,28 @@ import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, stopwatchOptio
 // import { getRandomMovie } from "./utils";
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { getEasyMovie, getHardMovie, getImageUrl } from "./movie_list";
+import { MOVIE_LIST } from "./movie_list/movie_list";
 // import { getImageUrl } from './utils';
 
+const easyMovieList = MOVIE_LIST.getShuffledEasyMovieList();
+const hardMovieList = MOVIE_LIST.getShuffledHardMovieList();
+
 export default function App() {
-  const [movieObject, setMovieObject] = useState({title: 'C L I C K    B E L O W', year: ' ', posterurl: ' '});
+  const [movieObject, setMovieObject] = useState(easyMovieList[0]);
+  const [easyMovieCount, setEasyMovieCount] = useState(1);
+  const [hardMovieCount, setHardMovieCount] = useState(1);
+
   const handleRandomButton = () => {
-    const movie = difficulty === DIFFICULTY.EASY ? getEasyMovie() : getHardMovie()
-    setMovieObject(movie);
+    if(difficulty === DIFFICULTY.EASY) {
+      setEasyMovieCount(easyMovieCount < easyMovieList.length-1 ? easyMovieCount + 1: easyMovieCount);
+      setMovieObject(easyMovieList[easyMovieCount]);
+    } else if(difficulty == DIFFICULTY.HARD) {
+      setHardMovieCount(hardMovieCount < hardMovieList.length-1 ? hardMovieCount + 1: hardMovieCount);
+      setMovieObject(hardMovieList[hardMovieCount]);
+    };
+    handleResetButton();
   }
+
   const handleStartButton = () => {
     setIsStopWatchShow(true);
     setStopwatchStart(!stopwatchStart);
