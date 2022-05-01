@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import Axios from 'axios';
 import { shuffle } from "../utils";
 import { EASY_MOVIE_LIST } from "./easy";
 import { HARD_MOVIE_LIST } from "./hard";
@@ -14,8 +16,13 @@ const getShuffledEasyMovieList = () => {
   return [ 
     START,
     ...x,
-
+    END
   ];
+};
+
+const getMovieListFromServer = async () => {
+  const serverResponse = await Axios.post('https://thakur-backend-server.herokuapp.com/getMovieList');
+  return _.get(serverResponse, 'data');
 };
 
 const getShuffledHardMovieList = () => {
@@ -29,7 +36,8 @@ const getShuffledHardMovieList = () => {
 
 export const MOVIE_LIST = {
   getShuffledEasyMovieList,
-  getShuffledHardMovieList
+  getShuffledHardMovieList,
+  getMovieListFromServer,
 }
 
 export const MASTER_MOVIE_LIST =  [

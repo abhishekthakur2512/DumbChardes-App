@@ -1,4 +1,4 @@
-const EASY_MOVIE_LIST = [{
+export const EASY_MOVIE_LIST = [{
     title: '24',
     year: '2016',
     genres: [ 'Action', 'Romance', 'Sci-Fi' ],

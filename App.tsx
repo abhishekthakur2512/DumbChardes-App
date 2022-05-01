@@ -1,21 +1,29 @@
-import React, { useState } from "react";
-import { StyleSheet, Switch, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import _ from 'lodash';
+import { StyleSheet, Switch, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View, Modal } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
-import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, stopwatchOptionsCss } from "./constants";
-// import { getRandomMovie } from "./utils";
+import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, HOW_TO_PLAY_CONTENT, HOW_TO_PLAY_HEADING, HOW_TO_PLAY_TEXT, stopwatchOptionsCss } from "./constants";
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
-import { getEasyMovie, getHardMovie, getImageUrl } from "./movie_list";
+import { getImageUrl } from "./movie_list";
 import { MOVIE_LIST } from "./movie_list/movie_list";
-// import { getImageUrl } from './utils';
-
-const easyMovieList = MOVIE_LIST.getShuffledEasyMovieList();
-const hardMovieList = MOVIE_LIST.getShuffledHardMovieList();
 
 export default function App() {
+  const [easyMovieList, setEasyMovieList] = useState(MOVIE_LIST.getShuffledEasyMovieList());
+  const [hardMovieList, setHardMovieList] = useState(MOVIE_LIST.getShuffledHardMovieList());
   const [movieObject, setMovieObject] = useState(easyMovieList[0]);
   const [easyMovieCount, setEasyMovieCount] = useState(1);
   const [hardMovieCount, setHardMovieCount] = useState(1);
+
+  useEffect( () => {
+    MOVIE_LIST.getMovieListFromServer()
+    .then( (response) => {
+      console.log(response);
+      setEasyMovieList(_.get(response, 'easyMovieList', MOVIE_LIST.getShuffledEasyMovieList()));
+      setHardMovieList(_.get(response, 'hardMovieList', MOVIE_LIST.getShuffledHardMovieList()));
+    })
+    .catch(err => console.log(err));
+  }, []);
 
   const handleRandomButton = () => {
     if(difficulty === DIFFICULTY.EASY) {
@@ -26,6 +34,7 @@ export default function App() {
       setMovieObject(hardMovieList[hardMovieCount]);
     };
     handleResetButton();
+    setShowHowToPlayButton(false);
   }
 
   const handleStartButton = () => {
@@ -46,12 +55,18 @@ export default function App() {
   const onHiddenToggle = () => {
     setIsHidden(!isHidden);
   }
+
+  const handleHowToPlay = () => {
+    setShowHowToPlayModal(true);
+  }
   
   const [stopwatchStart, setStopwatchStart] = useState(false);
   const [stopwatchReset, setStopwatchReset] = useState(false);
   const [isStopwatchShow, setIsStopWatchShow] = useState(false);
   const [difficulty, setDifficulty] = useState(DIFFICULTY.EASY);
   const [isHidden, setIsHidden] = useState(false);
+  const [showHowToPlayButton, setShowHowToPlayButton] = useState(true);
+  const [showHowToPlayModal, setShowHowToPlayModal] = useState(false);
 
   const getLogo = () => {
     return ( 
@@ -91,21 +106,6 @@ export default function App() {
 
         { isStopwatchShow ? getStopwatch() : getLogo()}
 
-        {/* <Block center>
-          <Image
-            style={styles.logo}
-            source={require("./assets/image_2.png")}
-            resizeMode={"cover"}
-          />
-        </Block>
-
-        <Block style = {{alignItems: 'center'}}>
-          <Stopwatch laps msecs 
-            start = { stopwatchStart }
-            reset = { stopwatchReset }
-            options = { stopwatchOptionsCss }/>
-        </Block> */}
-
         <View style={styles.toggle}>
           {
             difficulty === DIFFICULTY.EASY ?
@@ -134,7 +134,30 @@ export default function App() {
             <Image source={getImageUrl(movieObject.posterurl)} style = {styles.poster} />
           ):(<Text></Text>) }
         
+        {/* HOW TO PLAY BUTTON AND MODAL */}
+        {/* { showHowToPlayButton ? (
+            <TouchableHighlight onPress={handleHowToPlay}  style = {styles.howToPlayButton}>
+              <Text style={styles.howToPlayButton}>How to play</Text>
+            </TouchableHighlight>
+          ) : (<Text></Text>) } */}
 
+        {/* {
+          <Modal
+            transparent = {true}
+            visible = {showHowToPlayModal}
+          >
+            <View style = {styles.howToPlayModal}>
+              <Text textColor = {COLORS.BLACK} size = {20} style = {{alignItems: "center"}}>
+                {HOW_TO_PLAY_HEADING}
+              </Text>
+              <Text textColor = {COLORS.BLACK} size = {20}>
+                {HOW_TO_PLAY_CONTENT}
+              </Text>
+            </View>
+          </Modal>
+        } */}
+
+        
 
         {/* BUTTONS LIST */}
         <Block>
@@ -246,6 +269,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   
+  howToPlayButton: {
+    color: COLORS.TEXT,
+    fontFamily: Constants.FONT_DEFAULT,
+    fontSize: 25,
+    alignSelf: "center"
+  },
+
+  howToPlayModal: {
+    backgroundColor: COLORS.OFFWHITE,
+    color: COLORS.BLACK,
+    fontFamily: Constants.FONT_DEFAULT,
+    alignSelf: "center",
+    marginVertical: "20%",
+    marginHorizontal: "10%",
+    paddingVertical: "10%",
+    paddingHorizontal: '5%',
+    flex: 1  
+  },
+
   displayFillBox1: {
     marginLeft: "10%",
     marginRight: "10%",

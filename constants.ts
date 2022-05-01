@@ -22,7 +22,8 @@ export const COLOR_THEME = {
     TEXT: '#FFFFFF',
     BACKGROUND: '#1c080b',
     BLACK: '#000B19',
-    WHITE: '#FFFFFF'
+    WHITE: '#FFFFFF',
+    OFFWHITE: '#F8F0E3'
   }
 }
 
@@ -56,4 +57,9 @@ export enum DIFFICULTY {
   EASY,
   HARD
 }
+
+export const HOW_TO_PLAY_HEADING = 'HOW TO PLAY\nHOWW';
+export const HOW_TO_PLAY_CONTENT = '1 vs Many';
+
+
 export default Constants;
