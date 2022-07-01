@@ -18,7 +18,7 @@ export default function App() {
   useEffect( () => {
     MOVIE_LIST.getMovieListFromServer()
     .then( (response) => {
-      console.log(response);
+      console.log('Movie List');
       setEasyMovieList(_.get(response, 'easyMovieList', MOVIE_LIST.getShuffledEasyMovieList()));
       setHardMovieList(_.get(response, 'hardMovieList', MOVIE_LIST.getShuffledHardMovieList()));
     })
@@ -127,7 +127,7 @@ export default function App() {
         { !isHidden ? (
               <Block style={styles.displayFillBox1}>
                 <Text style={styles.displayFillText}>{movieObject.title}</Text>
-                <Text style={styles.displayFillText}>{movieObject.year}</Text>
+                <Text style={styles.displayFillTextYear}>{movieObject.year}</Text>
               </Block>
           ):(<Text></Text>) }
         { !isHidden ? (
@@ -300,12 +300,18 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: '3%'
   },
+  displayFillTextYear: {
+    color: COLORS.TEXT,
+    fontFamily: Constants.FONT_DEFAULT,
+    fontSize: 15,
+    marginBottom: '3%'
+  },
   headingImage: {
     width: width * 0.6,
     height: width * 0.1,
   },
   poster: {
-    height: '30%',
+    height: '27%',
     width: '40%',
     resizeMode: "contain",
     alignSelf: 'center',
