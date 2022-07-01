@@ -8,6 +8,7 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { getImageUrl } from "./movie_list";
 import { MOVIE_LIST } from "./movie_list/movie_list";
 
+
 export default function App() {
   const [easyMovieList, setEasyMovieList] = useState(MOVIE_LIST.getShuffledEasyMovieList());
   const [hardMovieList, setHardMovieList] = useState(MOVIE_LIST.getShuffledHardMovieList());
