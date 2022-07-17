@@ -1,4 +1,3 @@
-import { Image } from "react-native";
 import { EASY_MOVIE_LIST } from "./easy";
 import { HARD_MOVIE_LIST } from "./hard";
 import { MASTER_MOVIE_LIST } from "./movie_list";

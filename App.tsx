@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { StyleSheet, Switch, StatusBar, Dimensions, Image, TouchableHighlight, ImageBackground, Animated, View, Modal } from "react-native";
 import { Block, Text } from "galio-framework";
 const { height, width } = Dimensions.get("screen");
-import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, HOW_TO_PLAY_CONTENT, HOW_TO_PLAY_HEADING, HOW_TO_PLAY_TEXT, stopwatchOptionsCss } from "./constants";
+import Constants, { COLORS, COLOR_THEME, DIFFICULTY, HEADER_TEXT, HOW_TO_PLAY_CONTENT, HOW_TO_PLAY_HEADING, stopwatchOptionsCss } from "./constants";
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { getImageUrl } from "./movie_list";
 import { MOVIE_LIST } from "./movie_list/movie_list";
